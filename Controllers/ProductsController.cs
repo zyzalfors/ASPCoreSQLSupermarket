@@ -36,12 +36,12 @@ namespace Supermarket.Controllers
                 int Id = int.Parse(id);
                 var product = await _context.Products.FindAsync(Id);
 
-            if (product == null)
-            {
-                return NotFound();
-            }
+                if (product == null)
+                {
+                    return NotFound();
+                }
 
-            return product;
+                return product;
             }
             catch (FormatException e)
             {
@@ -50,7 +50,7 @@ namespace Supermarket.Controllers
         }
 
         // PUT: api/Products/5
-        
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(String id, Product product)
         {
@@ -58,29 +58,29 @@ namespace Supermarket.Controllers
             {
                 int Id = int.Parse(id);
                 if (Id != product.Id || product.Name == null)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(product).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(Id))
                 {
-                    return NotFound();
+                    return BadRequest();
                 }
-                else
-                {
-                    throw;
-                }
-            }
 
-            return NoContent();
+                _context.Entry(product).State = EntityState.Modified;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProductExists(Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                return NoContent();
             }
             catch (FormatException e)
             {
@@ -104,17 +104,17 @@ namespace Supermarket.Controllers
         {
             try
             {
-             int Id = int.Parse(id);
-             var product = await _context.Products.FindAsync(Id);
-             if (product == null)
-             {
-                return NotFound();
-             }
+                int Id = int.Parse(id);
+                var product = await _context.Products.FindAsync(Id);
+                if (product == null)
+                {
+                    return NotFound();
+                }
 
-             _context.Products.Remove(product);
-             await _context.SaveChangesAsync();
+                _context.Products.Remove(product);
+                await _context.SaveChangesAsync();
 
-             return NoContent();
+                return NoContent();
             }
             catch (FormatException e)
             {

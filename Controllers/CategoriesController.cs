@@ -31,7 +31,8 @@ namespace Supermarket.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Category>> GetCategory(String id)
         {
-            try {
+            try
+            {
                 int Id = int.Parse(id);
                 var category = await _context.Categories.FindAsync(Id);
 
@@ -42,21 +43,21 @@ namespace Supermarket.Controllers
 
                 return category;
             }
-            catch ( FormatException e)
+            catch (FormatException e)
             {
                 return BadRequest();
-            }  
+            }
         }
 
         // PUT: api/Categories/5 //modify category specified by an id
-        
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCategory(String id, Category category)
         {
             try
             {
                 int Id = int.Parse(id);
-                if (Id != category.Id || category.Name == null || category.Description == null )
+                if (Id != category.Id || category.Name == null || category.Description == null)
                 {
                     return BadRequest();
                 }
@@ -88,7 +89,7 @@ namespace Supermarket.Controllers
         }
 
         // POST: api/Categories //create a new category
-        
+
         [HttpPost]
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
@@ -108,17 +109,17 @@ namespace Supermarket.Controllers
         {
             try
             {
-              int Id = int.Parse(id);
-              var category = await _context.Categories.FindAsync(Id);
-              if (category == null)
-              {
-                 return NotFound();
-              } 
+                int Id = int.Parse(id);
+                var category = await _context.Categories.FindAsync(Id);
+                if (category == null)
+                {
+                    return NotFound();
+                }
 
-              _context.Categories.Remove(category);
-              await _context.SaveChangesAsync();
+                _context.Categories.Remove(category);
+                await _context.SaveChangesAsync();
 
-             return NoContent();
+                return NoContent();
             }
             catch (FormatException e)
             {

@@ -12,7 +12,5 @@ namespace Supermarket.Models
         public double Price { get; set; }
         public DateTime ExpirationDate { get; set; }
         public int? CategoryId { get; set; }
-
-        public virtual Category Category { get; set; }
     }
 }
