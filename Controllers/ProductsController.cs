@@ -92,6 +92,10 @@ namespace Supermarket.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
+            if (product.Name == null)
+            {
+                return BadRequest();
+            }
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
