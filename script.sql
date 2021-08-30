@@ -25,5 +25,3 @@ insert into Products
 values ('name1', 1, CAST( GETDATE() AS Date ), 1),
        ('name2', 2, CAST( GETDATE() AS Date ), 2),
        ('name2', 3, CAST( GETDATE() AS Date ), 3);
-
-delete from Categories where Id=1
