@@ -1,2 +1,2 @@
 # ASPCoreSQLSupermarket
-A example of CRUP-API mapping made with ASP Core technologies.
+An example of API developing with CRUD mapping made with ASP Core technologies. Used database is SQL server.
