@@ -20,11 +20,17 @@ namespace Supermarket.Controllers
             _context = context;
         }
 
-        // GET: api/Categories //get all categories
+        // GET: api/Categories //get all categories or get a category specified by ? query name
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        public async Task<ActionResult<IEnumerable<Category>>> GetCategories(String name = "")
         {
-            return await _context.Categories.ToListAsync();
+            IQueryable<Category> query = _context.Categories.AsQueryable();
+            if (name != "")
+            {
+                query = query.Where<Category>(x => x.Name.ToLower().Contains(name.ToLower()));
+            }
+
+            return await query.ToListAsync();
         }
 
         // GET: api/Categories/5 //get category specified by an id

@@ -20,11 +20,17 @@ namespace Supermarket.Controllers
             _context = context;
         }
 
-        // GET: api/Products
+        // GET: api/Products 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts(String name ="")
         {
-            return await _context.Products.ToListAsync();
+            IQueryable<Product> query = _context.Products.AsQueryable();
+            if (name != "")
+            {
+                query = query.Where<Product>(x => x.Name.ToLower().Contains(name.ToLower()));
+            }
+
+            return await query.ToListAsync();
         }
 
         // GET: api/Products/5

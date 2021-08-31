@@ -22,6 +22,7 @@ namespace Supermarket.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
+
                 optionsBuilder.UseSqlServer("Server=LAPTOP-BM18PFE4;Database=Supermarket;Trusted_Connection=True");
             }
         }
